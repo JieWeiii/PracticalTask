@@ -14,4 +14,4 @@ Reading through the generated code before testing it, I noticed the data-quality
 2. Had the Enable field changed to keep the raw database value separate from the computed true/false value, so a value that is neither 0 nor 1 gets flagged explicitly instead of silently being read as "enabled".
 3. Added the missing NULL checks for Port, Version, SlotIndex, and ScanRate.
 
-All changes came from comparing the code against the actual sample data myself, not from something the AI flagged on its own.
+All three changes came from reviewing the code against the sample data and the schema myself, not from something the AI flagged on its own.
