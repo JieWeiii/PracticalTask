@@ -50,16 +50,26 @@ public class DeviceConfig
         if (string.IsNullOrWhiteSpace(IpAddress))
             warnings.Add("IP address not set");
 
-        if (SlotIndex.HasValue && SlotIndex.Value < 0)
+        if (!Port.HasValue)
+            warnings.Add("Port not set");
+
+        if (!SlotIndex.HasValue)
+            warnings.Add("SlotIndex not set");
+        else if (SlotIndex.Value < 0)
             warnings.Add($"SlotIndex is negative ({SlotIndex.Value})");
 
-        if (ScanRate.HasValue && ScanRate.Value == 0)
+        if (!ScanRate.HasValue)
+            warnings.Add("ScanRate not set");
+        else if (ScanRate.Value == 0)
             warnings.Add("ScanRate is 0");
 
         if (EnableRaw != 0 && EnableRaw != 1)
             warnings.Add($"Enable has an unexpected value ({EnableRaw}), expected 0 or 1");
         else if (!IsEnabled)
             warnings.Add("Device is disabled (Enable = 0)");
+
+        if (!Version.HasValue)
+            warnings.Add("Version not set");
 
         if (string.IsNullOrWhiteSpace(Trigger))
             warnings.Add("Trigger not set");
